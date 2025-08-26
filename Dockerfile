@@ -1,7 +1,7 @@
-FROM ubuntu:24.04
+FROM debian:12
 
-RUN apt-get update && \
-    apt-get install -y g++ make cmake iputils-ping net-tools && \
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y gcc g++ make cmake iputils-ping net-tools && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -10,5 +10,7 @@ COPY . /app
 
 RUN make
 
-ENTRYPOINT ["./ipv4_chat"]
-CMD ["192.168.100.255", "9080"]
+ENV IP_ADDRESS=0.0.0.0
+ENV PORT=9080
+
+CMD ./ipv4_chat $IP_ADDRESS $PORT
