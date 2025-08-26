@@ -7,7 +7,6 @@
 #include <arpa/inet.h>
 #include <cstring>
 #include <atomic>
-#include <thread>
 #include <mutex>
 #include "exceptions/exceptions.h"
 #include "common/object.h"
