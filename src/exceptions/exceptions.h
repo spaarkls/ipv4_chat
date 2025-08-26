@@ -3,10 +3,10 @@
  * @brief Определения пользовательских классов исключений для обработки ошибок
  *
  * Содержит набор исключений, унаследованных от std::exception:
- *  - BadIp — некорректный IP адрес
- *  - BadCountArguments — неверное количество аргументов
- *  - BadInitSocket — ошибка инициализации сокета
- *  - BadSendMessage — ошибка при отправке сообщения
+ *  - BadIp - некорректный IP адрес
+ *  - BadCountArguments - неверное количество аргументов
+ *  - BadInitSocket - ошибка инициализации сокета
+ *  - BadPort - некорректный порт
  */
 
 #ifndef __EXCEPTIONS_H__
@@ -63,6 +63,7 @@ class BadPort : public std::exception {
 /**
  * @class BadCountArguments
  * @brief Исключение для неверного количества аргументов
+ *
  * Наследуется от std::exception
  */
 class BadCountArguments : public std::exception {
@@ -85,6 +86,7 @@ class BadCountArguments : public std::exception {
 /**
  * @class BadInitSocket
  * @brief Исключение при неудачной инициализации сокета
+ *
  * Наследуется от std::exception
  */
 class BadInitSocket : public std::exception {

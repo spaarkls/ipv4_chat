@@ -9,7 +9,7 @@ Network::Network(const struct NetworkData& net_data) : data(net_data) {
   memset(&send_addr, 0, sizeof(send_addr));
   send_addr.sin_family = AF_INET;
   send_addr.sin_port = htons(data.port);
-  send_addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+  inet_pton(AF_INET, BROADCAST, &send_addr.sin_addr);
 }
 
 Network::Network(const Network& net_data) {
