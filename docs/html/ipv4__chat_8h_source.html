@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IPV4Chat: Исходный файл src/ipv4_chat.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">IPV4Chat
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ipv4__chat_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ipv4_chat.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ipv4__chat_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef __IPV4_CHAT_H__</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define __IPV4_CHAT_H__</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;arpa/inet.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;sys/socket.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="object_8h.html">common/object.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="exceptions_8h.html">exceptions/exceptions.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classNetwork.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classNetwork.html">Network</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classNetwork.html#adfd97fcd39b4bc2d4576d7e23c518aea">   32</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classNetwork.html#a936e0c7144b79fae5cec3bae9b0bbe42">fd</a> = -1;             </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">struct </span><a class="code" href="structNetworkData.html">NetworkData</a> <a class="code" href="classNetwork.html#adfd97fcd39b4bc2d4576d7e23c518aea">data</a>; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keyword">struct </span>sockaddr_in <a class="code" href="classNetwork.html#acec7c4a23759846adce8f08a2ba3bca6">recv_addr</a>; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">struct </span>sockaddr_in <a class="code" href="classNetwork.html#aabd3f1483c42b929b6f5e964304cce17">send_addr</a>; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <a class="code" href="classNetwork.html#a22366a210c0fb05448d1802a0e98452a">Network</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structNetworkData.html">NetworkData</a>&amp; net_data);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="classNetwork.html#a22366a210c0fb05448d1802a0e98452a">Network</a>(<span class="keyword">const</span> <a class="code" href="classNetwork.html">Network</a>&amp; net_data);</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classNetwork.html#a22366a210c0fb05448d1802a0e98452a">   44</a></span>&#160;  <a class="code" href="classNetwork.html#a22366a210c0fb05448d1802a0e98452a">Network</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classNetwork.html#a7a4e19cdb4bf0c7ecf82baa643831492">~Network</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classNetwork.html#aa50fe3be4273a1447982eba45ab0b530">   55</a></span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="classNetwork.html#aa50fe3be4273a1447982eba45ab0b530">get_fd</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span> noexcept { <span class="keywordflow">return</span> <a class="code" href="classNetwork.html#a936e0c7144b79fae5cec3bae9b0bbe42">fd</a>; }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="structNetworkData.html">NetworkData</a> <a class="code" href="classNetwork.html#afbfa8d7924ec89008a4218d21d24487a">get_network_data</a>(void) const noexcept {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classNetwork.html#adfd97fcd39b4bc2d4576d7e23c518aea">data</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">inline</span> <span class="keyword">struct </span>sockaddr_in <a class="code" href="classNetwork.html#aa56da809a194e5b6cf1c6d50105e8d27">get_recv_addr</a>(void) const noexcept {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classNetwork.html#acec7c4a23759846adce8f08a2ba3bca6">recv_addr</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keyword">inline</span> <span class="keyword">struct </span>sockaddr_in <a class="code" href="classNetwork.html#ac4b3538c231e9c8a56529199535ce850">get_send_addr</a>(void) const noexcept {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classNetwork.html#aabd3f1483c42b929b6f5e964304cce17">send_addr</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classNetwork.html#a31029fcc5b488ef1224bea72a5094af4">set_network_data</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code" href="structNetworkData.html">NetworkData</a>&amp; net_data) noexcept;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classNetwork.html#a68cf4e94b9bb86d726ac8ea0c69958e0">init_socket</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classChat.html">  101</a></span>&#160;<span class="keyword">class </span><a class="code" href="classChat.html">Chat</a> {</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classChat.html#ac098b99381f685fe4907ccaef94c9e92">  102</a></span>&#160;  std::mutex <a class="code" href="classChat.html#ac098b99381f685fe4907ccaef94c9e92">mtx</a>; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classChat.html#a8e01f03c378355e5816627545db58d20">  103</a></span>&#160;  <a class="code" href="classNetwork.html">Network</a>&amp; <a class="code" href="classChat.html#a8e01f03c378355e5816627545db58d20">net</a>; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classChat.html#a2f35c93819c970bdc499c6efcb5ec3bf">  104</a></span>&#160;  <a class="code" href="structUserData.html">UserData</a> <a class="code" href="classChat.html#a2f35c93819c970bdc499c6efcb5ec3bf">data</a>; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classChat.html#ab19d0dfb5c4ea233e905dbbe28b0c498">  111</a></span>&#160;  <a class="code" href="classChat.html#ab19d0dfb5c4ea233e905dbbe28b0c498">Chat</a>(<a class="code" href="classNetwork.html">Network</a>&amp; <a class="code" href="classChat.html#a8e01f03c378355e5816627545db58d20">net</a>, <span class="keyword">const</span> <a class="code" href="structUserData.html">UserData</a>&amp; user) : <a class="code" href="classChat.html#a8e01f03c378355e5816627545db58d20">net</a>(<a class="code" href="classChat.html#a8e01f03c378355e5816627545db58d20">net</a>), <a class="code" href="classChat.html#a2f35c93819c970bdc499c6efcb5ec3bf">data</a>(user) {}</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classChat.html#aab1a8cded8bd4965efab27f90e751519">send_message</a>(<span class="keyword">const</span> std::string&amp; msg);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classChat.html#a225ca0c737b82eafd2cd50dc333c8362">receive_message</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;};</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// __IPV4_CHAT_H__</span></div>
+<div class="ttc" id="aclassChat_html"><div class="ttname"><a href="classChat.html">Chat</a></div><div class="ttdoc">Класс чата</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00101">ipv4_chat.h:101</a></div></div>
+<div class="ttc" id="aclassChat_html_a225ca0c737b82eafd2cd50dc333c8362"><div class="ttname"><a href="classChat.html#a225ca0c737b82eafd2cd50dc333c8362">Chat::receive_message</a></div><div class="ttdeci">void receive_message()</div><div class="ttdoc">Приём сообщения Получает сообщение с сокета и выводит его в консоль</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8cpp_source.html#l00072">ipv4_chat.cpp:72</a></div></div>
+<div class="ttc" id="aclassChat_html_a2f35c93819c970bdc499c6efcb5ec3bf"><div class="ttname"><a href="classChat.html#a2f35c93819c970bdc499c6efcb5ec3bf">Chat::data</a></div><div class="ttdeci">UserData data</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00104">ipv4_chat.h:104</a></div></div>
+<div class="ttc" id="aclassChat_html_a8e01f03c378355e5816627545db58d20"><div class="ttname"><a href="classChat.html#a8e01f03c378355e5816627545db58d20">Chat::net</a></div><div class="ttdeci">Network &amp; net</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00103">ipv4_chat.h:103</a></div></div>
+<div class="ttc" id="aclassChat_html_aab1a8cded8bd4965efab27f90e751519"><div class="ttname"><a href="classChat.html#aab1a8cded8bd4965efab27f90e751519">Chat::send_message</a></div><div class="ttdeci">void send_message(const std::string &amp;msg)</div><div class="ttdoc">Отправка сообщения</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8cpp_source.html#l00059">ipv4_chat.cpp:59</a></div></div>
+<div class="ttc" id="aclassChat_html_ab19d0dfb5c4ea233e905dbbe28b0c498"><div class="ttname"><a href="classChat.html#ab19d0dfb5c4ea233e905dbbe28b0c498">Chat::Chat</a></div><div class="ttdeci">Chat(Network &amp;net, const UserData &amp;user)</div><div class="ttdoc">Конструктор чата</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00111">ipv4_chat.h:111</a></div></div>
+<div class="ttc" id="aclassChat_html_ac098b99381f685fe4907ccaef94c9e92"><div class="ttname"><a href="classChat.html#ac098b99381f685fe4907ccaef94c9e92">Chat::mtx</a></div><div class="ttdeci">std::mutex mtx</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00102">ipv4_chat.h:102</a></div></div>
+<div class="ttc" id="aclassNetwork_html"><div class="ttname"><a href="classNetwork.html">Network</a></div><div class="ttdoc">Класс для работы с сетевым сокетом</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00031">ipv4_chat.h:31</a></div></div>
+<div class="ttc" id="aclassNetwork_html_a22366a210c0fb05448d1802a0e98452a"><div class="ttname"><a href="classNetwork.html#a22366a210c0fb05448d1802a0e98452a">Network::Network</a></div><div class="ttdeci">Network()=default</div></div>
+<div class="ttc" id="aclassNetwork_html_a31029fcc5b488ef1224bea72a5094af4"><div class="ttname"><a href="classNetwork.html#a31029fcc5b488ef1224bea72a5094af4">Network::set_network_data</a></div><div class="ttdeci">void set_network_data(const struct NetworkData &amp;net_data) noexcept</div><div class="ttdoc">Установить сетевые данные</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8cpp_source.html#l00028">ipv4_chat.cpp:28</a></div></div>
+<div class="ttc" id="aclassNetwork_html_a68cf4e94b9bb86d726ac8ea0c69958e0"><div class="ttname"><a href="classNetwork.html#a68cf4e94b9bb86d726ac8ea0c69958e0">Network::init_socket</a></div><div class="ttdeci">void init_socket(void)</div><div class="ttdoc">Инициализация сокета Создаёт UPD сокет, биндит его на recv_addr и включает опции BROADCAST,...</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8cpp_source.html#l00033">ipv4_chat.cpp:33</a></div></div>
+<div class="ttc" id="aclassNetwork_html_a7a4e19cdb4bf0c7ecf82baa643831492"><div class="ttname"><a href="classNetwork.html#a7a4e19cdb4bf0c7ecf82baa643831492">Network::~Network</a></div><div class="ttdeci">~Network()</div><div class="ttdoc">Деструктор, который закрывает сокет если он открыт</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8cpp_source.html#l00022">ipv4_chat.cpp:22</a></div></div>
+<div class="ttc" id="aclassNetwork_html_a936e0c7144b79fae5cec3bae9b0bbe42"><div class="ttname"><a href="classNetwork.html#a936e0c7144b79fae5cec3bae9b0bbe42">Network::fd</a></div><div class="ttdeci">int fd</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00032">ipv4_chat.h:32</a></div></div>
+<div class="ttc" id="aclassNetwork_html_aa50fe3be4273a1447982eba45ab0b530"><div class="ttname"><a href="classNetwork.html#aa50fe3be4273a1447982eba45ab0b530">Network::get_fd</a></div><div class="ttdeci">int get_fd(void) const noexcept</div><div class="ttdoc">Получить дескриптор сокета</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00055">ipv4_chat.h:55</a></div></div>
+<div class="ttc" id="aclassNetwork_html_aa56da809a194e5b6cf1c6d50105e8d27"><div class="ttname"><a href="classNetwork.html#aa56da809a194e5b6cf1c6d50105e8d27">Network::get_recv_addr</a></div><div class="ttdeci">struct sockaddr_in get_recv_addr(void) const noexcept</div><div class="ttdoc">Получить адрес для приёма сообщений</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00055">ipv4_chat.h:69</a></div></div>
+<div class="ttc" id="aclassNetwork_html_aabd3f1483c42b929b6f5e964304cce17"><div class="ttname"><a href="classNetwork.html#aabd3f1483c42b929b6f5e964304cce17">Network::send_addr</a></div><div class="ttdeci">struct sockaddr_in send_addr</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00032">ipv4_chat.h:35</a></div></div>
+<div class="ttc" id="aclassNetwork_html_ac4b3538c231e9c8a56529199535ce850"><div class="ttname"><a href="classNetwork.html#ac4b3538c231e9c8a56529199535ce850">Network::get_send_addr</a></div><div class="ttdeci">struct sockaddr_in get_send_addr(void) const noexcept</div><div class="ttdoc">Получить адрес для отправки сообщений</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00055">ipv4_chat.h:77</a></div></div>
+<div class="ttc" id="aclassNetwork_html_acec7c4a23759846adce8f08a2ba3bca6"><div class="ttname"><a href="classNetwork.html#acec7c4a23759846adce8f08a2ba3bca6">Network::recv_addr</a></div><div class="ttdeci">struct sockaddr_in recv_addr</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00032">ipv4_chat.h:34</a></div></div>
+<div class="ttc" id="aclassNetwork_html_adfd97fcd39b4bc2d4576d7e23c518aea"><div class="ttname"><a href="classNetwork.html#adfd97fcd39b4bc2d4576d7e23c518aea">Network::data</a></div><div class="ttdeci">struct NetworkData data</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00032">ipv4_chat.h:33</a></div></div>
+<div class="ttc" id="aclassNetwork_html_afbfa8d7924ec89008a4218d21d24487a"><div class="ttname"><a href="classNetwork.html#afbfa8d7924ec89008a4218d21d24487a">Network::get_network_data</a></div><div class="ttdeci">struct NetworkData get_network_data(void) const noexcept</div><div class="ttdoc">Получить сетевые данные</div><div class="ttdef"><b>Definition:</b> <a href="ipv4__chat_8h_source.html#l00055">ipv4_chat.h:61</a></div></div>
+<div class="ttc" id="aexceptions_8h_html"><div class="ttname"><a href="exceptions_8h.html">exceptions.h</a></div><div class="ttdoc">Определения пользовательских классов исключений для обработки ошибок</div></div>
+<div class="ttc" id="aobject_8h_html"><div class="ttname"><a href="object_8h.html">object.h</a></div><div class="ttdoc">Общие структуры данных и константы для работы чата</div></div>
+<div class="ttc" id="astructNetworkData_html"><div class="ttname"><a href="structNetworkData.html">NetworkData</a></div><div class="ttdoc">Структура для хренения сетевых данных</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00030">object.h:30</a></div></div>
+<div class="ttc" id="astructUserData_html"><div class="ttname"><a href="structUserData.html">UserData</a></div><div class="ttdoc">Структура для хранения информации о пользователе</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00023">object.h:23</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="ipv4__chat_8h.html">ipv4_chat.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

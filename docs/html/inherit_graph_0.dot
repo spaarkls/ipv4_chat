@@ -1,0 +1,16 @@
+digraph "Иерархия классов. Графический вид."
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node2 [label="std::exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="BadCountArguments",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBadCountArguments.html",tooltip="Исключение для неверного количества аргументов"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="BadInitSocket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBadInitSocket.html",tooltip="Исключение при неудачной инициализации сокета"];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="BadIp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBadIp.html",tooltip="Исключение, возникающее при использовании некорректного IP адреса"];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="BadPort",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBadPort.html",tooltip="Исключение если при использовании некорректного порта"];
+}

@@ -1,0 +1,12 @@
+digraph "parse_args"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="parse_args",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Парсит аргументы командной строки в структуру NetworkData."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ipIsValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$helper_8cpp.html#a5fd8c7e69b1823789fef49b8e9188bc8",tooltip="Проверяет корректность IPv4-адреса"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="portIsValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$helper_8cpp.html#a444f299d9c3cc940dac838753c848e79",tooltip="Проверяет корректность порта"];
+}

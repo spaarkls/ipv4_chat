@@ -1,0 +1,15 @@
+digraph "src/common/object.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="src/common/object.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Общие структуры данных и константы для работы чата"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="src/helper.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$helper_8h.html",tooltip="Вспомогательные функции для работы с аргументами и проверкой IP."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="src/helper.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$helper_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="src/ipv4_chat.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ipv4__chat_8h.html",tooltip="Определения классов Network и Chat для работы с UDP чатом по IPv4."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="src/ipv4_chat.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ipv4__chat_8cpp.html",tooltip=" "];
+}
